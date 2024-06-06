@@ -15,7 +15,7 @@ class DemandeController {
     }
 
     private function listerDemandes() {
-        $data = $this->demandeModel->findAllWithClient();
+        $data = $this-> demandeModel-> findAllWithClient();
         echo json_encode($data);
     }
 }
