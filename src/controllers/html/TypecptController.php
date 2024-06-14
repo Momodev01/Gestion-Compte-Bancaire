@@ -1,8 +1,9 @@
 <?php
 
 require_once "../src/models/TypecptModel.php";
+require_once "../src/core/Controller.php";
 
-class TypecptController {
+class TypecptController extends Controller {
     private TypecptModel $typecptModel;
 
     public function __construct(){
@@ -15,7 +16,6 @@ class TypecptController {
     }
 
     public function listerTypecpt(){
-        $data = $this-> typecptModel-> findAll();
-        require_once "../views/typecpt/listeTypecpt.html.php";
+        parent::renderView("typecpt/listeTypecpt", ['data' => $this-> typecptModel-> findAll()]);
     }
 }

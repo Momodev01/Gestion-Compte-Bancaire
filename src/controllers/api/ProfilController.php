@@ -2,7 +2,7 @@
 
 require_once "../src/models/ProfilModel.php";
 
-class ProfilController {
+class ProfilController extends Controller {
     private ProfilModel $profilModel;
 
     public function __construct() {
@@ -15,7 +15,6 @@ class ProfilController {
     }
 
     private function listerProfils() {
-        $data = $this-> profilModel-> findAllProfils();
-        echo json_encode($data);
+        parent::renderJson($this-> profilModel-> findAllProfils());
     }
 }

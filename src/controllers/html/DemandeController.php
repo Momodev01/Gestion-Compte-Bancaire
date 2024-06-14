@@ -1,8 +1,9 @@
 <?php
 
 require_once "../src/models/DemandeModel.php";
+require_once "../src/core/Controller.php";
 
-class DemandeController {
+class DemandeController extends Controller {
     private DemandeModel $demandeModel;
 
     public function __construct() {
@@ -15,7 +16,9 @@ class DemandeController {
     }
 
     private function listerDemandes() {
-        $data = $this-> demandeModel-> findAllWithClient();
-        require_once "../views/demandes/listeDemandes.html.php";
+        parent::renderView("demandes/listeDemandes", ['data' => $this-> demandeModel-> findAllWithClient()]);
+    }
+    protected function listerDemandesClient() {
+        parent::renderView("demandes/listeDemandesClient", ['data' => $this-> demandeModel-> findAllWithClient()]);
     }
 }

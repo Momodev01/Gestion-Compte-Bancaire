@@ -1,8 +1,9 @@
 <?php
 
 require_once "../src/models/UsersModel.php";
+require_once "../src/core/Controller.php";
 
-class ClientController {
+class ClientController extends Controller {
     private UsersModel $clientModel;
     
     public function __construct(){
@@ -15,7 +16,6 @@ class ClientController {
     }
 
     public function listerClients(){
-        $data = $this-> clientModel-> findUsersByProfil("Client");
-        require_once "../views/clients/listeClients.html.php";
+        parent::renderView("clients/listeClients", ['data' => $this-> clientModel-> findUsersByProfil("Client")]);
     }
 }

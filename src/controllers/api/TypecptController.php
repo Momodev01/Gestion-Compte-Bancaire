@@ -2,7 +2,7 @@
 
 require_once "../src/models/TypecptModel.php";
 
-class TypecptController {
+class TypecptController extends Controller {
     private TypecptModel $typecptModel;
 
     public function __construct(){
@@ -15,7 +15,6 @@ class TypecptController {
     }
 
     public function listerTypecpt(){
-        $data = $this-> typecptModel-> findAll();
-        echo json_encode($data);
+        parent::renderJson($this-> typecptModel-> findAll());
     }
 }

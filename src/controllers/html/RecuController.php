@@ -1,8 +1,9 @@
 <?php
 
 require_once "../src/models/RecuModel.php";
+require_once "../src/core/Controller.php";
 
-class RecuController {
+class RecuController extends Controller {
     private RecuModel $recuModel;
 
     public function __construct() {
@@ -15,7 +16,6 @@ class RecuController {
     }
 
     private function listerRecues() {
-        $data = $this-> recuModel-> findAllRecues();
-        require_once "../views/recues/listeRecues.html.php";
+        parent::renderView("recues/listeRecues", ['data' => $this-> recuModel-> findAllRecues()]);
     }
 }

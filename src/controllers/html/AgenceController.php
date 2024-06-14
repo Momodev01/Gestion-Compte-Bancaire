@@ -1,8 +1,9 @@
 <?php
 
 require_once "../src/models/AgenceModel.php";
+require_once "../src/core/Controller.php";
 
-class AgenceController {
+class AgenceController extends Controller {
     private AgenceModel $agenceModel;
 
     public function __construct(){
@@ -15,7 +16,6 @@ class AgenceController {
     }
 
     public function listerAgences(){
-        $data = $this-> agenceModel-> findAllAgences();
-        require_once "../views/agence/listeAgences.html.php";
+        parent::renderView("agence/listeAgences", ['data' => $this-> agenceModel-> findAllAgences()]);
     }
 }

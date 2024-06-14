@@ -2,7 +2,7 @@
 
 require_once "../src/models/DemandeModel.php";
 
-class DemandeController {
+class DemandeController extends Controller {
     private DemandeModel $demandeModel;
 
     public function __construct() {
@@ -15,7 +15,6 @@ class DemandeController {
     }
 
     private function listerDemandes() {
-        $data = $this-> demandeModel-> findAllWithClient();
-        echo json_encode($data);
+        parent::renderJson($this-> demandeModel-> findAllWithClient());
     }
 }

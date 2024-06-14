@@ -2,7 +2,7 @@
 
 require_once "../src/models/UsersModel.php";
 
-class UsersController {
+class UsersController extends Controller {
     private UsersModel $uModel;
 
     public function __construct(){
@@ -15,7 +15,6 @@ class UsersController {
     }
 
     public function listerUsers(){
-        $data = $this->uModel-> findAllUsers();
-        echo json_encode($data);
+        parent::renderJson($this-> uModel-> findAllUsers());
     }
 }

@@ -2,7 +2,7 @@
 
 require_once "../src/models/TransactionModel.php";
 
-class TransactionController {
+class TransactionController extends Controller {
     private TransactionModel $transactionModel;
 
     public function __construct() {
@@ -15,7 +15,6 @@ class TransactionController {
     }
 
     private function listerTransactions() {
-        $data = $this-> transactionModel-> findAllTransactions();
-        echo json_encode($data);
+        parent::renderJson($this-> transactionModel-> findAllTransactions());
     }
 }

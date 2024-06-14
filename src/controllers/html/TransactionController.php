@@ -1,8 +1,9 @@
 <?php
 
 require_once "../src/models/TransactionModel.php";
+require_once "../src/core/Controller.php";
 
-class TransactionController {
+class TransactionController extends Controller {
     private TransactionModel $transactionModel;
 
     public function __construct() {
@@ -15,7 +16,6 @@ class TransactionController {
     }
 
     private function listerTransactions() {
-        $data = $this-> transactionModel-> findAllTransactions();
-        require_once "../views/transactions/listeTransactions.html.php";
+        parent::renderView("transactions/listeTransactions", ['data' => $this-> transactionModel-> findAllTransactions()]);
     }
 }

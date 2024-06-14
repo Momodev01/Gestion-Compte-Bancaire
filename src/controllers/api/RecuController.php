@@ -2,7 +2,7 @@
 
 require_once "../src/models/RecuModel.php";
 
-class RecuController {
+class RecuController extends Controller {
     private RecuModel $recuModel;
 
     public function __construct() {
@@ -15,7 +15,6 @@ class RecuController {
     }
 
     private function listerRecues() {
-        $data = $this-> recuModel-> findAllRecues();
-        echo json_encode($data);
+        parent::renderJson($this-> recuModel-> findAllRecues());
     }
 }

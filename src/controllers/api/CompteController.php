@@ -2,7 +2,7 @@
 
 require_once "../src/models/CompteModel.php";
 
-class CompteController {
+class CompteController extends Controller {
     private CompteModel $compteModel;
 
     public function __construct() {
@@ -15,7 +15,6 @@ class CompteController {
     }
 
     private function listerComptes() {
-        $data = $this->compteModel->findAllComptes();
-        echo json_encode($data);
+        parent::renderJson($this->compteModel->findAllComptes());
     }
 }

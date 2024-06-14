@@ -21,19 +21,28 @@
             </select>
         </div>
     </div>
+
     <div class="container mt-4 col-12">
         <table class="table table-striped table-hover table-bordered w-100">
             <thead class="table-primary">
                 <tr>
-                    <th class="text-center">Numéro</th>
-                    <th class="text-center">Adresse</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Client</th>
+                    <th class="text-center">Téléphone</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Type</th>
+                    <th class="text-center">Statut</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($data as $datum): ?>
                     <tr>
-                        <td class="text-center"> <?= $datum->numero ?> </td>
-                        <td class="text-center"> <?= $datum->adresse ?> </td>
+                        <td class="text-center"> <?= $datum->dated ?> </td>
+                        <td class="text-center"> <?= $datum->prenom.' '.$datum->nom ?> </td>
+                        <td class="text-center"> <?= $datum->telephone ?> </td>
+                        <td class="text-center"> <?= $datum->email ?> </td>
+                        <td class="text-center"> <?= $datum->libtc ?> </td>
+                        <td class="text-center"> <?= $datum->statut ?> </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
@@ -42,4 +51,4 @@
 </div>
 
     <!-- Java Script -->
-<script src="<?=WEBROOT?>/js/agences.js"></script>
+<script src="<?=WEBROOT?>/js/demandes.js"></script>

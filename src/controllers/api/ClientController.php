@@ -2,7 +2,7 @@
 
 require_once "../src/models/UsersModel.php";
 
-class ClientController {
+class ClientController extends Controller {
     private UsersModel $clientModel;
     
     public function __construct(){
@@ -15,7 +15,6 @@ class ClientController {
     }
 
     public function listerClients(){
-        $data = $this-> clientModel-> findUsersByProfil("Client");
-        echo json_encode($data);
+        parent::renderJson($this-> clientModel-> findUsersByProfil("Client"));
     }
 }
