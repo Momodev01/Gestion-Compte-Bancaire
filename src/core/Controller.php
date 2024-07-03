@@ -2,6 +2,10 @@
 abstract class  Controller {
     protected $layout = "base";
 
+    public function __construct() {
+        Session::open();
+    }
+
     public function renderView(string $view, array $data = [] ): void {
         extract($data);
         ob_start();
@@ -14,8 +18,8 @@ abstract class  Controller {
         echo json_encode($data);
     }
 
-    public function redirectToRoot(string $url){
-        header("Location:".WEBROOT."/?$url");
+    public function redirectToRoot(string $ressource, string $controller, string $action = "") {
+        header("Location:".WEBROOT."/?ressource=$ressource&controller=$controller&action=$action");
         exit;
     }
     
@@ -23,4 +27,16 @@ abstract class  Controller {
         return WEBROOT."/?ressource=$ressource&controller=$controller&action=$action";
     }
     
+    public function objectToArray($object) {
+        if (is_object($object)) {
+            return get_object_vars($object);
+        }
+        return $object; // Retourne tel quel si ce n'est pas un objet
+    }
+
+    public function dump($var) {
+        echo "<pre>";
+            var_dump($var);
+        echo "</pre>";
+    }
 }

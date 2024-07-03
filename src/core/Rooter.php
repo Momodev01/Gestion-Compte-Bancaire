@@ -6,8 +6,15 @@ class  Rooter {
             $ressource = $_REQUEST['ressource'];
             if (isset($_REQUEST['controller'])) {
                 $controller = ucfirst($_REQUEST['controller']).'Controller';
-                require_once "../src/controllers/$ressource/$controller.php";
-                $control = new $controller();
+                $fileController = "../src/controllers/$ressource/$controller.php";
+                if (file_exists($fileController)) {
+                    require_once $fileController;
+                    $controller = new $controller();
+                } else {
+                    require_once "../src/controllers/html/ErreurController.php";
+                    $controller = new ErreurController();
+                }
+                
             }
         }
         else {

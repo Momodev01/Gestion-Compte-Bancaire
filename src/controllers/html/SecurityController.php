@@ -1,57 +1,81 @@
 <?php
 
-require_once "../src/models/SecurityModel.php";
+require_once "../src/models/UsersModel.php";
 require_once "../src/core/Controller.php";
+require_once "../src/core/Validator.php";
+require_once "../src/core/Session.php";
+require_once "../src/core/Autorisation.php";
 
 class SecurityController extends Controller {
-    private SecurityModel $securityModel;
 
-    public function __construct() {
-        $this->securityModel = new SecurityModel();
+    private UsersModel $securityModel;
+
+    public function __construct()
+    {
+        session_start();
+        $this->layout = 'connexion';
+        $this->securityModel = new UsersModel();
         $this-> load();
     }
 
-    public function load() {
-        $this-> logView();
+    public function load()
+    {
+        if (isset($_REQUEST['action'])) {
+            if ($_REQUEST['action'] == 'login') {
+                $this-> login();
+            }
+            elseif ($_REQUEST['action'] == 'logout') {
+                Session::close();
+                parent::redirectToRoot('html', 'Security', 'logout');
+            }
+            elseif ($_REQUEST['action'] == 'show-form') {
+                $this-> showForm();
+            }
+            
+        } else {
+            $this-> showForm();
+        }
+        
     }
 
-    private function logView() {
-        if (isset($_REQUEST['action'])) {
-            if ($_REQUEST["action"] == "logout") {
-                unset($_SESSION["userConnect"]);
-                session_destroy();
-                header("location:".WEBROOT);
-            }
-            elseif ($_REQUEST['action'] == 'login') {
-                if (isset($_POST['email']) && isset($_POST['pwd'])) {
-                    $username = $_POST['email'];
-                    $password = $_POST['pwd'];
+    private function showForm()
+    {
+        parent::renderView('security/login');
+    }
     
-                    $userConnect = $this->securityModel->findUserConnect($username, $password);
-                    $_SESSION['userConnect'] = $userConnect;
-                    if ($userConnect != null) {
-                        if ($_SESSION['userConnect'][0]['libp'] == 'Client') {
-                            $this->redirectToRoot('ressource=html&controller=Client');
-                        }
-                        elseif ($_SESSION['userConnect'][0]['libp'] == 'Respo Guichet') {
-                            echo 'Je suis le RG';
-                            // $this->redirectToRoot('ressource=html&controller=Demande');
-                        }
-                        elseif ($_SESSION['userConnect'][0]['libp'] == 'Chargé Client') {
-                            echo 'Je suis le CC';
-                            // $this->redirectToRoot('ressource=html&controller=Demande');
-                        }
-                        
-                    } else {
-                        header("location:".WEBROOT);
-                    }
-                }
+    public function redirectAfterConnect(string $role)
+    {
+        switch (Autorisation::getRole()) {
+            case 'Client':
+                parent::redirectToRoot('html', 'Client');
+                exit;
+            case 'Respo Guichet':
+                parent::redirectToRoot('html', 'Compte');
+                exit;
+            case 'Chargé Client':
+                parent::redirectToRoot('html', 'Demande');
+                exit;
+            
+            default:
+                # code...
+                break;
+        }
+    }
+
+    private function login() {
+        if (!Validator::isEmpty('email')) {
+            Validator::isEmail('email');
+        }
+        Validator::isEmpty('pwd');
+        if (Validator::validate()) {
+            $connected = $this-> securityModel-> connexion($_POST['email'], $_POST['pwd']);
+            if ($connected) {
+                Session::setObject('userConnected', $connected[0]);
+                $this-> redirectAfterConnect($connected[0]['libp']);
             }
-            else {
-                header("location:".WEBROOT);
-            }
-        } else {
-            require_once "../views/security/login.html.php";
+        }
+        else {
+            parent::renderView('security/login', ['errors' => Validator::$errors]);
         }
     }
 

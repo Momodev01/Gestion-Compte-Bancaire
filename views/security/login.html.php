@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion GB</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
-
-</head>
-<body>
-
+<?php
+if (!isset($errors)) {
+  $errors = [];
+}
+?>
 <section class="vh-100 bg-primary">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -16,13 +10,17 @@
         <form class="p-5 text-center rounded rounded-5 bg-light-subtle" id="formConnexion" action="<?=WEBROOT?>" method="post">
           
             <h3 class="mb-5">Log in</h3>
+
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+              <input type="text" class="form-control <?= isset($errors['email'])?'is-invalid':'' ?>" id="email" name="email" placeholder="name@example.com">
               <label for="email">Email address</label>
+              <div class="email-error" class="invalid-feedback text-danger"> <?= $errors['email']??"" ?> </div>
             </div>
+
             <div class="form-floating">
-              <input type="password" class="form-control mt-5" id="password" name="pwd" placeholder="Password">
+              <input type="password" class="form-control mt-5 <?= isset($errors['pwd'])?'is-invalid':'' ?>" id="password" name="pwd" placeholder="Password">
               <label for="password">Password</label>
+              <div class="password-error" class="invalid-feedback"> <?= $errors['pwd']??"" ?> </div>
             </div>
             <input type="hidden" name="ressource" value="html">
             <input type="hidden" name="controller" value="Security">
@@ -33,7 +31,4 @@
   </div>
 </section>
 
-
 <script src="<?=WEBROOT?>/js/connexion.js"></script>
-</body>
-</html>
