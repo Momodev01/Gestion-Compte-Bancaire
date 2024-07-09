@@ -1,7 +1,8 @@
 <?php
+namespace App\Controllers\Html;
+use App\Core\Controller;
+use App\Models\AgenceModel;
 
-require_once "../src/models/AgenceModel.php";
-require_once "../src/core/Controller.php";
 
 class AgenceController extends Controller {
     private AgenceModel $agenceModel;

@@ -1,24 +1,31 @@
 <?php
-class  Rooter {
+namespace App\Core;
 
+use App\Controllers\Html\ {
+    SecurityController,
+    ErreurController
+};
+
+
+class  Rooter {
     public static function run() {
         if (isset($_REQUEST['ressource'])) {
             $ressource = $_REQUEST['ressource'];
             if (isset($_REQUEST['controller'])) {
                 $controller = ucfirst($_REQUEST['controller']).'Controller';
+                $namespace = "App\\Controllers\\$ressource\\";
+                $controllerClass = $namespace . $controller;
                 $fileController = "../src/controllers/$ressource/$controller.php";
                 if (file_exists($fileController)) {
                     require_once $fileController;
-                    $controller = new $controller();
+                    $controller = new $controllerClass();
                 } else {
-                    require_once "../src/controllers/html/ErreurController.php";
                     $controller = new ErreurController();
                 }
-                
+
             }
         }
         else {
-            require_once "../src/controllers/html/SecurityController.php";
             $security = new SecurityController();
         }
     }

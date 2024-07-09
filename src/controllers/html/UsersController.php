@@ -1,7 +1,8 @@
 <?php
+namespace App\Controllers\Html;
+use App\Core\Controller;
+use App\Models\UsersModel;
 
-require_once "../src/models/UsersModel.php";
-require_once "../src/core/Controller.php";
 
 class UsersController extends Controller {
     private UsersModel $uModel;

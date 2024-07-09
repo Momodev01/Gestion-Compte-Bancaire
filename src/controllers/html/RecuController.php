@@ -1,7 +1,8 @@
 <?php
+namespace App\Controllers\Html;
+use App\Core\Controller;
+use App\Models\RecuModel;
 
-require_once "../src/models/RecuModel.php";
-require_once "../src/core/Controller.php";
 
 class RecuController extends Controller {
     private RecuModel $recuModel;

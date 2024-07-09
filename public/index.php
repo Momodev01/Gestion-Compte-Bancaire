@@ -1,6 +1,7 @@
 <?php
+require_once "../vendor/autoload.php";
+use App\Core\Rooter;
 define('WEBROOT', "http://localhost:7000");
-define('.DIRECTORY_SEPARATOR.', "/");
 
 require_once "../src/core/Rooter.php";
 

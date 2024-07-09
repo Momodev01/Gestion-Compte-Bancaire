@@ -1,4 +1,6 @@
 <?php
+namespace App\Core;
+
 abstract class  Model
 {
     public string $table;
@@ -24,20 +26,20 @@ abstract class  Model
         $calledClass = get_called_class();
         $result = $this->openConnexion()->query($sql);
         if (!$single) {
-            return $result->fetchAll(PDO::FETCH_CLASS, $calledClass);
+            return $result->fetchAll(\PDO::FETCH_CLASS, $calledClass);
         }
-        return $result->fetch(PDO::FETCH_CLASS, $calledClass);
+        return $result->fetch(\PDO::FETCH_CLASS, $calledClass);
     }
     protected function executeSelecte(string $sql, bool $single = false): array {
         $result = $this->openConnexion()->query($sql);
         if ($single) {
-            return $result->fetch(PDO::FETCH_ASSOC);
+            return $result->fetch(\PDO::FETCH_ASSOC);
         }
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     protected function openConnexion() {
-        return new PDO('mysql:host=localhost;dbname=gestionbank;charset=utf8', 'root', '');
+        return new \PDO('mysql:host=localhost;dbname=gestionbank;charset=utf8', 'root', '');
     }
 
     public function  dump($variable){

@@ -1,5 +1,7 @@
 <?php
-require_once "../src/core/Controller.php";
+namespace App\Core;
+
+
 class Autorisation {
 
     public static function isConnected() {

@@ -1,7 +1,8 @@
 <?php
+namespace App\Controllers\Html;
+use App\Core\Controller;
+use App\Models\TransactionModel;
 
-require_once "../src/models/TransactionModel.php";
-require_once "../src/core/Controller.php";
 
 class TransactionController extends Controller {
     private TransactionModel $transactionModel;

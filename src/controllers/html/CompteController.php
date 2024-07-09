@@ -1,7 +1,8 @@
 <?php
+namespace App\Controllers\Html;
+use App\Core\Controller;
+use App\Models\CompteModel;
 
-require_once "../src/models/CompteModel.php";
-require_once "../src/core/Controller.php";
 
 
 class CompteController extends Controller {

@@ -1,0 +1,21 @@
+{
+    "name": "victus/gestion-banque",
+    "description": "Gestion compte bancaire",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "App\\Models\\": "src/models/",
+            "App\\Core\\": "src/core/",
+            "App\\Controllers\\Html\\": "src/controllers/html/",
+            "App\\Controllers\\Api\\": "src/controllers/api/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Momodev",
+            "email": "devmomo111@gmail.com"
+        }
+    ],
+    "require": {}
+}

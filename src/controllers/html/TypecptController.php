@@ -1,7 +1,8 @@
 <?php
+namespace App\Controllers\Html;
+use App\Core\Controller;
+use App\Models\TypecptModel;
 
-require_once "../src/models/TypecptModel.php";
-require_once "../src/core/Controller.php";
 
 class TypecptController extends Controller {
     private TypecptModel $typecptModel;

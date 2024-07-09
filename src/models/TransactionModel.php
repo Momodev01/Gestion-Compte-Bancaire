@@ -1,7 +1,6 @@
 <?php
-
-require "../src/core/Model.php";
-
+namespace App\Models;
+use App\Core\Model;
 class TransactionModel extends Model {
 
     public function findAllTransactions() {

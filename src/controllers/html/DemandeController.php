@@ -1,7 +1,8 @@
 <?php
+namespace App\Controllers\Html;
+use App\Core\Controller;
+use App\Models\DemandeModel;
 
-require_once "../src/models/DemandeModel.php";
-require_once "../src/core/Controller.php";
 
 class DemandeController extends Controller {
     private DemandeModel $demandeModel;

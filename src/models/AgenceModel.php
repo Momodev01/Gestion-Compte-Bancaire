@@ -1,6 +1,7 @@
 <?php
+namespace App\Models;
+use App\Core\Model;
 
-require "../src/core/Model.php";
 
 class AgenceModel extends Model {
 

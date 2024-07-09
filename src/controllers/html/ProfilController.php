@@ -1,7 +1,8 @@
 <?php
+namespace App\Controllers\Html;
+use App\Core\Controller;
+use App\Models\ProfilModel;
 
-require_once "../src/models/ProfilModel.php";
-require_once "../src/core/Controller.php";
 
 class ProfilController extends Controller {
     private ProfilModel $profilModel;

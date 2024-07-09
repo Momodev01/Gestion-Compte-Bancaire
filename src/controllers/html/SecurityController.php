@@ -1,10 +1,12 @@
 <?php
-
-require_once "../src/models/UsersModel.php";
-require_once "../src/core/Controller.php";
-require_once "../src/core/Validator.php";
-require_once "../src/core/Session.php";
-require_once "../src/core/Autorisation.php";
+namespace App\Controllers\Html;
+use App\Models\UsersModel;
+use App\Core\ {
+    Session,
+    Autorisation,
+    Validator,
+    Controller
+};
 
 class SecurityController extends Controller {
 
@@ -42,7 +44,7 @@ class SecurityController extends Controller {
     {
         parent::renderView('security/login');
     }
-    
+
     public function redirectAfterConnect(string $role)
     {
         switch (Autorisation::getRole()) {

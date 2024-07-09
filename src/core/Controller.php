@@ -1,5 +1,7 @@
 <?php
-abstract class  Controller {
+namespace App\Core;
+
+abstract class Controller {
     protected $layout = "base";
 
     public function __construct() {
@@ -13,7 +15,7 @@ abstract class  Controller {
         $contentForView = ob_get_clean();
         require_once "../views/layout/$this->layout.layout.html.php";
     }
-    
+
     public function renderJson(array $data) {
         echo json_encode($data);
     }
@@ -22,11 +24,11 @@ abstract class  Controller {
         header("Location:".WEBROOT."/?ressource=$ressource&controller=$controller&action=$action");
         exit;
     }
-    
+
     public function path(string $ressource, string $controller, string $action){
         return WEBROOT."/?ressource=$ressource&controller=$controller&action=$action";
     }
-    
+
     public function objectToArray($object) {
         if (is_object($object)) {
             return get_object_vars($object);

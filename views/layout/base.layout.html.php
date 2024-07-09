@@ -13,6 +13,7 @@
 
 <main class="d-flex ">
     <div class="container col-2 shadow">
+        <h1>  </h1>
         <h1 class="fw-light fs-6 mt-3 mb-3 text-center">MENU</h1>
         <ul class="list-group">
             <li class="list-group-item ">
@@ -35,20 +36,23 @@
                     Agences
                 </a>
             </li>
-
+            <?php if(isset($_SESSION["user"]) && $_SESSION["user"]["libp"] == "Chargé Client"): ?>
             <li class="list-group-item">
                 <a href="<?=WEBROOT?>?ressource=html&controller=users" class="list-group-item list-group-item-action <?= isset($_GET["controller"]) && $_GET["controller"] == "users" ? "active" : "" ?> d-flex align-item-center ">
                     <span class="material-symbols-outlined px-2"> group </span>
                     Users
                 </a>
             </li>
+            <?php endif; ?>
 
+            <?php if(isset($_SESSION["user"]) && $_SESSION["user"]["libp"] == "Chargé Client"): ?>
             <li class="list-group-item">
                 <a href="<?=WEBROOT?>?ressource=html&controller=client" class="list-group-item list-group-item-action <?= isset($_GET["controller"]) && $_GET["controller"] == "client" ? "active" : "" ?> d-flex align-item-center ">
                     <span class="material-symbols-outlined px-2"> person </span>
                     Clients
                 </a>
             </li>
+            <?php endif;?>
 
             <li class="list-group-item">
                 <a href="<?=WEBROOT?>?ressource=html&controller=typecpt" class="list-group-item list-group-item-action <?= isset($_GET["controller"]) && $_GET["controller"] == "typecpt" ? "active" : "" ?> d-flex align-item-center ">
